@@ -6,6 +6,13 @@ describe('AutomationPractice', () => {
         // Chequear que el objeto 'Cart' (carrito de compras) esté visible
         cy.contains('Cart').should('be.visible');
     });
+
+    it('Evaluar que la página tenga al menos 3 imágenes', () => {
+        cy.visit('http://www.automationpractice.pl');
+
+        // Chequear que el número de imágenes sea de al menos 3
+        cy.get('img').should('have.length.at.least', 3);
+    });
 });
 
 describe('SauceDemo', () => {
@@ -29,6 +36,8 @@ describe('SauceDemo', () => {
 
     it('TEST-03: Inicio de Sesión usando comandos', () => {
         cy.visit('https://www.saucedemo.com/');
+
+        cy.wait(30000); // Para evitar los errores con timeout
 
         // Invocación al comando iniciarSesion
         cy.iniciarSesion('standard_user', 'secret_sauce');
